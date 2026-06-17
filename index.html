@@ -3,104 +3,417 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>FHM Markets Invest - Demo</title>
+<title>FHM Markets Invest</title>
 
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:Segoe UI,sans-serif}
-body{background:#03140d;color:white;min-height:100vh}
-.page{min-height:100vh;display:flex;justify-content:center;align-items:center;padding:20px}
-.card{width:100%;max-width:430px;background:#061f15;border-radius:25px;padding:28px;box-shadow:0 20px 50px #000}
-.logo{text-align:center;font-size:34px;font-weight:800;color:#f5c542;margin-bottom:5px}
-.logo span{color:#22c55e}
-.sub{text-align:center;color:#cbd5e1;margin-bottom:30px}
-input{width:100%;padding:16px;margin-bottom:15px;border-radius:14px;border:1px solid #1f5f42;background:#03140d;color:white;font-size:16px}
-button,.btn{width:100%;padding:16px;border:0;border-radius:14px;font-size:16px;font-weight:bold;color:white;text-align:center;text-decoration:none;display:block;cursor:pointer}
-.loginBtn{background:#16a34a}
-.telegram{background:#229ED9;margin-top:15px}
-.error{color:#ff6b6b;text-align:center;margin-top:12px}
-#dashboard{display:none;padding:20px}
-.top{display:flex;justify-content:space-between;align-items:center;margin-bottom:25px}
-.badge{background:#064e3b;padding:8px 14px;border-radius:20px;color:#86efac}
-.balance{background:linear-gradient(135deg,#16a34a,#064e3b);padding:28px;border-radius:22px;margin-bottom:25px}
-.balance p{font-size:15px;color:#dcfce7}
-.balance h1{font-size:38px;margin-top:10px}
-.menu{display:grid;grid-template-columns:1fr 1fr;gap:15px;margin-bottom:20px}
-.box{padding:25px;border-radius:20px;text-align:center;background:#08291c;border:1px solid #22c55e}
-.box.gold{background:#3b300b;border-color:#f5c542}
-.box h3{margin-top:10px}
-.safe{background:#08291c;padding:20px;border-radius:18px;margin-top:20px;color:#d1fae5}
-.logout{background:#dc2626;margin-top:20px}
-.note{text-align:center;color:#94a3b8;font-size:12px;margin-top:20px}
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:Arial, sans-serif;
+}
+
+body{
+  min-height:100vh;
+  background:#020d09;
+  color:white;
+}
+
+#loginPage{
+  min-height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  padding:20px;
+  background:
+  linear-gradient(rgba(0,0,0,.45),rgba(0,0,0,.75)),
+  radial-gradient(circle at top right,#0f5132,#020d09 55%);
+}
+
+.loginBox{
+  width:100%;
+  max-width:430px;
+  padding:35px 28px;
+  border-radius:24px;
+  background:rgba(0,30,20,.85);
+  border:1px solid rgba(255,255,255,.12);
+  box-shadow:0 20px 50px rgba(0,0,0,.6);
+}
+
+.logo{
+  text-align:center;
+  font-size:42px;
+  font-weight:900;
+  color:#d4af37;
+  margin-bottom:5px;
+}
+
+.logo span{
+  color:#22c55e;
+}
+
+h2{
+  text-align:center;
+  margin-top:35px;
+  font-size:28px;
+}
+
+.subtitle{
+  text-align:center;
+  color:#d1d5db;
+  margin:12px 0 30px;
+  line-height:1.5;
+}
+
+input{
+  width:100%;
+  padding:17px;
+  margin-bottom:16px;
+  border-radius:14px;
+  border:1px solid rgba(255,255,255,.18);
+  background:rgba(255,255,255,.05);
+  color:white;
+  font-size:16px;
+  outline:none;
+}
+
+button,.btn{
+  width:100%;
+  padding:17px;
+  border:none;
+  border-radius:14px;
+  font-size:16px;
+  font-weight:bold;
+  cursor:pointer;
+  text-decoration:none;
+  text-align:center;
+  display:block;
+  color:white;
+}
+
+.loginBtn{
+  background:linear-gradient(135deg,#16a34a,#007a3d);
+}
+
+.telegram{
+  background:#0c86c6;
+  margin-top:18px;
+}
+
+.forgot{
+  text-align:center;
+  color:#facc15;
+  margin:22px 0;
+}
+
+.error{
+  margin-top:15px;
+  color:#ff6b6b;
+  text-align:center;
+}
+
+.note{
+  text-align:center;
+  font-size:12px;
+  color:#94a3b8;
+  margin-top:25px;
+}
+
+/* DASHBOARD */
+
+#dashboard{
+  display:none;
+  min-height:100vh;
+  background:linear-gradient(160deg,#020d09,#062b1d,#020d09);
+}
+
+.header{
+  padding:25px 22px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  border-bottom:1px solid rgba(255,255,255,.1);
+}
+
+.brand{
+  font-size:24px;
+  font-weight:bold;
+}
+
+.brand span{
+  color:#22c55e;
+}
+
+.avatar{
+  width:48px;
+  height:48px;
+  border-radius:50%;
+  background:#22c55e;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:25px;
+}
+
+.content{
+  padding:25px 22px;
+  max-width:620px;
+  margin:auto;
+}
+
+.welcome{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:25px;
+}
+
+.welcome h1{
+  font-size:26px;
+}
+
+.welcome b{
+  color:#22c55e;
+}
+
+.status{
+  background:#064e3b;
+  color:#d1fae5;
+  padding:10px 14px;
+  border-radius:12px;
+  font-size:14px;
+}
+
+.balance{
+  background:linear-gradient(135deg,#16a34a,#06703f);
+  padding:30px;
+  border-radius:20px;
+  border:1px solid #22c55e;
+  box-shadow:0 15px 35px rgba(0,0,0,.35);
+  margin-bottom:30px;
+}
+
+.balance p{
+  font-size:15px;
+  color:#dcfce7;
+}
+
+.balance h1{
+  font-size:40px;
+  margin:15px 0;
+}
+
+.menuTitle{
+  font-size:22px;
+  margin-bottom:16px;
+}
+
+.menu{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:16px;
+  margin-bottom:22px;
+}
+
+.menuBox{
+  padding:28px 15px;
+  border-radius:18px;
+  text-align:center;
+  background:#052f1e;
+  border:1px solid #22c55e;
+}
+
+.menuBox.gold{
+  background:#3a2f0b;
+  border-color:#d4af37;
+}
+
+.menuBox .icon{
+  font-size:42px;
+  margin-bottom:12px;
+}
+
+.menuBox h3{
+  font-size:22px;
+  margin-bottom:8px;
+}
+
+.menuBox p{
+  color:#d1d5db;
+}
+
+.security{
+  margin-top:25px;
+  padding:22px;
+  border-radius:18px;
+  background:linear-gradient(135deg,#052f1e,#031b12);
+  display:flex;
+  gap:15px;
+  align-items:center;
+}
+
+.security .shield{
+  font-size:38px;
+}
+
+.security p{
+  color:#d1d5db;
+  margin-top:6px;
+  line-height:1.4;
+}
+
+.footer{
+  margin-top:35px;
+  padding-top:25px;
+  border-top:1px solid rgba(255,255,255,.1);
+  display:flex;
+  align-items:center;
+  gap:15px;
+}
+
+.footerLogo{
+  font-size:32px;
+  font-weight:900;
+  color:#d4af37;
+}
+
+.footerLogo span{
+  color:#22c55e;
+}
+
+.logout{
+  margin-top:25px;
+  background:#dc2626;
+}
+
+@media(max-width:480px){
+  .logo{
+    font-size:34px;
+  }
+
+  .brand{
+    font-size:20px;
+  }
+
+  .balance h1{
+    font-size:34px;
+  }
+
+  .welcome{
+    flex-direction:column;
+    align-items:flex-start;
+    gap:12px;
+  }
+}
 </style>
 </head>
 
 <body>
 
-<div id="loginPage" class="page">
-  <div class="card">
-    <div class="logo">FHM <span>MARKETS</span></div>
-    <div class="sub">Sila log masuk ke akaun e-Wallet demo anda</div>
+<!-- LOGIN PAGE -->
+<div id="loginPage">
+  <div class="loginBox">
 
-    <input type="text" id="user" placeholder="ID Pengguna">
-    <input type="password" id="pass" placeholder="Kata Laluan">
+    <div class="logo">FHM<span>↗</span></div>
+    <div class="subtitle"><b>MARKETS INVEST</b></div>
 
-    <button class="loginBtn" onclick="login()">LOG MASUK</button>
+    <h2>Selamat Datang</h2>
+    <div class="subtitle">
+      Sila log masuk ke akaun e-Wallet anda
+    </div>
+
+    <input type="text" id="username" placeholder="ID Pengguna">
+    <input type="password" id="password" placeholder="Kata Laluan">
+
+    <button class="loginBtn" onclick="login()">🔒 LOG MASUK</button>
+
+    <div class="forgot">Lupa kata laluan?</div>
 
     <a class="btn telegram" href="https://t.me/USERNAME_TELEGRAM" target="_blank">
-      Hubungi Admin Telegram
+      ✈ HUBUNGI ADMIN TELEGRAM
     </a>
 
     <div id="error" class="error"></div>
-    <div class="note">Paparan demo sahaja, bukan sistem kewangan sebenar.</div>
+
+    <div class="note">
+      © 2024 FHM Markets Invest. Paparan demo statik sahaja.
+    </div>
+
   </div>
 </div>
 
+<!-- DASHBOARD -->
 <div id="dashboard">
-  <div class="top">
-    <h2>FHM Markets Invest</h2>
-    <div class="badge">Akaun Aktif</div>
+
+  <div class="header">
+    <div class="brand">FHM MARKETS <span>INVEST</span></div>
+    <div class="avatar">👤</div>
   </div>
 
-  <h3>Selamat Datang, FHM001</h3>
+  <div class="content">
 
-  <div class="balance">
-    <p>JUMLAH BAKI</p>
-    <h1>RM 380,000.00</h1>
-    <p>e-Wallet FHM</p>
-  </div>
-
-  <div class="menu">
-    <div class="box">
-      <div style="font-size:40px">💵</div>
-      <h3>DEPOSIT</h3>
-      <p>Tambah Baki</p>
+    <div class="welcome">
+      <h1>Selamat Datang,<br><b>FHM001</b></h1>
+      <div class="status">✅ Akaun Aktif</div>
     </div>
 
-    <div class="box gold">
-      <div style="font-size:40px">💸</div>
-      <h3>WITHDRAW</h3>
-      <p>Pengeluaran</p>
+    <div class="balance">
+      <p>JUMLAH BAKI</p>
+      <h1>RM 380,000.00</h1>
+      <p>e-Wallet FHM</p>
     </div>
+
+    <div class="menuTitle">Menu Utama</div>
+
+    <div class="menu">
+      <div class="menuBox">
+        <div class="icon">💵</div>
+        <h3>DEPOSIT</h3>
+        <p>Tambah Baki</p>
+      </div>
+
+      <div class="menuBox gold">
+        <div class="icon">💸</div>
+        <h3>WITHDRAW</h3>
+        <p>Pengeluaran</p>
+      </div>
+    </div>
+
+    <a class="btn telegram" href="https://t.me/USERNAME_TELEGRAM" target="_blank">
+      ✈ HUBUNGI ADMIN TELEGRAM
+      <br>
+      <small>Klik untuk berbual dengan admin</small>
+    </a>
+
+    <div class="security">
+      <div class="shield">🛡️</div>
+      <div>
+        <h3>Keselamatan Akaun</h3>
+        <p>Jangan kongsi maklumat akaun anda dengan sesiapa.</p>
+      </div>
+    </div>
+
+    <div class="footer">
+      <div class="footerLogo">FHM<span>↗</span></div>
+      <div>
+        <b>FHM Markets Invest</b>
+        <p style="color:#cbd5e1;margin-top:5px;">
+          Platform pelaburan demo yang selamat dan dipercayai.
+        </p>
+      </div>
+    </div>
+
+    <button class="logout" onclick="logout()">LOG KELUAR</button>
+
   </div>
-
-  <a class="btn telegram" href="https://t.me/USERNAME_TELEGRAM" target="_blank">
-    💬 Hubungi Admin Telegram
-  </a>
-
-  <div class="safe">
-    <h3>Keselamatan Akaun</h3>
-    <p>Jangan kongsi ID pengguna atau kata laluan anda dengan sesiapa.</p>
-  </div>
-
-  <button class="logout" onclick="logout()">LOG KELUAR</button>
 </div>
 
 <script>
 function login(){
-  let user = document.getElementById("user").value;
-  let pass = document.getElementById("pass").value;
+  const username = document.getElementById("username").value;
+  const password = document.getElementById("password").value;
 
-  if(user === "fhm001" && pass === "123456"){
+  if(username === "fhm001" && password === "123456"){
     document.getElementById("loginPage").style.display = "none";
     document.getElementById("dashboard").style.display = "block";
   }else{
